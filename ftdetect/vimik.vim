@@ -1,1 +1,3 @@
-autocmd BufNewFile,BufRead *.vmk setfiletype vimik
+if has("autocmd")
+	autocmd BufNewFile,BufRead *.vmk setf VIMIK
+endif

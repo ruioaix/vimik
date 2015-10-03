@@ -6,7 +6,7 @@ function! base#mkdir(path, ...) "{{{
   let path = expand(a:path)
   if !isdirectory(path) && exists("*mkdir")
     let path = base#chomp_slash(path)
-    if a:0 && a:1 && tolower(input("Vimwiki: Make new directory: ".path."\n [Y]es/[n]o? ")) !~ "y"
+    if a:0 && a:1 && tolower(input("Vimik: Make new directory: ".path."\n [Y]es/[n]o? ")) !~ "y"
       return 0
     endif
     call mkdir(path, "p")
@@ -29,14 +29,14 @@ function! base#edit_file(command, filename, ...) "{{{
     execute a:command.' '.fname
   else
     echom ' '
-    echom 'Vimwiki: Unable to edit file in non-existent directory: '.dir
+    echom 'Vimik: Unable to edit file in non-existent directory: '.dir
   endif
 
   " save previous link
-  " a:1 -- previous vimwiki link to save
+  " a:1 -- previous vimik link to save
   " a:2 -- should we update previous link
   if a:0 && a:2 && len(a:1) > 0
-    let b:vimwiki_prev_link = a:1
+    let b:vimik_prev_link = a:1
   endif
 endfunction " }}}
 
@@ -60,13 +60,13 @@ function! base#subdir(path, filename) "{{{
 endfunction "}}}
 
 function! base#get_wikifile_url(wikifile) "{{{
-  return VimwikiGet('path_html') . base#subdir(VimwikiGet('path'), a:wikifile) . fnamemodify(a:wikifile, ":t:r") . '.html'
+  return VimikGet('path_html') . base#subdir(VimikGet('path'), a:wikifile) . fnamemodify(a:wikifile, ":t:r") . '.html'
 endfunction "}}}
 
 function! base#update_conf() " {{{ Init page-specific variables
   let subdir = base#subdir(VimikGet('path'), expand('%:p'))
-  call VimwikiSet('subdir', subdir)
-  call VimwikiSet('url', base#get_wikifile_url(expand('%:p')))
+  call VimikSet('subdir', subdir)
+  call VimikSet('url', base#get_wikifile_url(expand('%:p')))
 endfunction " }}}
 
 function! base#goto_index(...) "{{{
@@ -76,6 +76,6 @@ function! base#goto_index(...) "{{{
     let cmd = 'edit'
   endif
 
-  call base#edit_file(cmd, VimwikiGet('path') . VimwikiGet('index') . VimwikiGet('ext'))
+  call base#edit_file(cmd, VimikGet('path') . VimikGet('index') . VimikGet('ext'))
   call base#update_conf()
 endfunction "}}}

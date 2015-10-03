@@ -7,14 +7,6 @@ let s:old_cpo = &cpo
 set cpo&vim
 let &cpo = s:old_cpo
 
-let g:vimik_conf= {}
-let g:vimik_conf.path = 0           " # of calls to VimikGet with path or path_html
-let g:vimik_conf.path_html = 0      " # of calls to path_html()
-let g:vimik_conf.normalize_path = 0 " # of calls to normalize_path()
-let g:vimik_conf.subdir = 0         " # of calls to vimik#base#subdir()
-let g:vimik_conf.timing = []        " various timing measurements
-let g:vimik_conf.html = []          " html conversion timing
-
 function! VimikGet(option) "{{{
 	if has_key(g:vimik_conf, a:option)
 		return g:vimik_conf[a:option]
@@ -109,13 +101,7 @@ endfunction " }}}
 
 function! s:setup_filetype() "{{{
 	let path = expand('%:p:h')
-	" if the file is in vimik, return 1
-	" else return -1.
-	let idx = s:find_wiki(path)
-
-	" initialize and cache global vars of current state
-	call Vimik_setup_buffer_state(idx)
-
+	call Vimik_setup_buffer_state(s:find_wiki(path))
 	set filetype=vimik
 endfunction "}}}
 

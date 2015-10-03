@@ -10,3 +10,10 @@ let b:undo_ftplugin = "setlocal ".
       \ "formatoptions< foldtext< ".
       \ "foldmethod< foldexpr< commentstring< "
 " UNDO }}}
+
+command! -buffer Vimwiki2HTML
+      \ silent w <bar> 
+      \ let res = vimwiki#html#Wiki2HTML(expand(VimwikiGet('path_html')),
+      \                             expand('%'))
+      \<bar>
+      \ if res != '' | echo 'Vimwiki: HTML conversion is done.' | endif

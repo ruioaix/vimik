@@ -17,11 +17,17 @@ function! VimikSet(option, value) "{{{
 	let g:vimik_conf[a:option] = a:value
 endfunction "}}}
 
-command! -count=1 VimikIndex  call base#goto_index(v:count1)
+command! VimikIndex call base#goto_index()
+command! VimikTabIndex call base#goto_index(1)
 
 if !hasmapto('<Plug>VimikIndex')
   nmap <silent><unique> <Leader>ww <Plug>VimikIndex
 endif
 nnoremap <unique><script> <Plug>VimikIndex :VimikIndex<CR>
+
+if !hasmapto('<Plug>VimikTabIndex')
+  nmap <silent><unique> <Leader>wt <Plug>VimikTabIndex
+endif
+nnoremap <unique><script> <Plug>VimikTabIndex :VimikTabIndex<CR>
 
 let &cpo = s:old_cpo

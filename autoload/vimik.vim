@@ -67,29 +67,29 @@ function! vimik#goto_index(...) "{{{
 	call vimik#save_subdir_and_htmlurl()
 endfunction "}}}
 
-function! base#matchstr_at_cursor(wikiRX) "{{{
-  let col = col('.') - 1
-  let line = getline('.')
-  let ebeg = -1
-  let cont = match(line, a:wikiRX, 0)
-  while (ebeg >= 0 || (0 <= cont) && (cont <= col))
-    let contn = matchend(line, a:wikiRX, cont)
-    if (cont <= col) && (col < contn)
-      let ebeg = match(line, a:wikiRX, cont)
-      let elen = contn - ebeg
-      break
-    else
-      let cont = match(line, a:wikiRX, contn)
-    endif
-  endwh
-  if ebeg >= 0
-    return strpart(line, ebeg, elen)
-  else
-    return ""
-  endif
+function! vimik#matchstr_at_cursor(wikiRX) "{{{
+	let col = col('.') - 1
+	let line = getline('.')
+	let ebeg = -1
+	let cont = match(line, a:wikiRX, 0)
+	while (ebeg >= 0 || (0 <= cont) && (cont <= col))
+		let contn = matchend(line, a:wikiRX, cont)
+		if (cont <= col) && (col < contn)
+			let ebeg = match(line, a:wikiRX, cont)
+			let elen = contn - ebeg
+			break
+		else
+			let cont = match(line, a:wikiRX, contn)
+		endif
+	endwh
+	if ebeg >= 0
+		return strpart(line, ebeg, elen)
+	else
+		return ""
+	endif
 endf "}}}
 
-function! base#follow_link(split, ...) "{{{ Parse link at cursor and pass 
+function! vimik#follow_link(split, ...) "{{{ Parse link at cursor and pass 
 	if a:split == "split"
 		let cmd = ":split "
 	elseif a:split == "vsplit"
@@ -101,23 +101,23 @@ function! base#follow_link(split, ...) "{{{ Parse link at cursor and pass
 	endif
 
 	" try WikiLink
-	let lnk = matchstr(base#matchstr_at_cursor(g:vimwiki_rxWikiLink), g:vimwiki_rxWikiLinkMatchUrl)
+	let lnk = matchstr(vimik#matchstr_at_cursor(g:vimwiki_rxWikiLink), g:vimwiki_rxWikiLinkMatchUrl)
 
 	" try WikiIncl
 	if lnk == ""
-		let lnk = matchstr(base#matchstr_at_cursor(g:vimwiki_rxWikiIncl),
+		let lnk = matchstr(vimik#matchstr_at_cursor(g:vimwiki_rxWikiIncl),
 					\ g:vimwiki_rxWikiInclMatchUrl)
 	endif
 
 	" try Weblink
 	if lnk == ""
-		let lnk = matchstr(base#matchstr_at_cursor(g:vimwiki_rxWeblink),
+		let lnk = matchstr(vimik#matchstr_at_cursor(g:vimwiki_rxWeblink),
 					\ g:vimwiki_rxWeblinkMatchUrl)
 	endif
 
 	if lnk != ""
 		if !VimwikiLinkHandler(lnk)
-			call vimwiki#base#open_link(cmd, lnk)
+			call vimwiki#vimik#open_link(cmd, lnk)
 		endif
 		return
 	endif
@@ -125,7 +125,7 @@ function! base#follow_link(split, ...) "{{{ Parse link at cursor and pass
 	if a:0 > 0
 		execute "normal! ".a:1
 	else		
-		call vimwiki#base#normalize_link(0)
+		call vimwiki#vimik#normalize_link(0)
 	endif
 
 endfunction " }}}

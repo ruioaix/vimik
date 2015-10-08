@@ -6,7 +6,7 @@ let g:loaded_vimik = 1
 let s:old_cpo = &cpo
 set cpo&vim
 
-if !exists("g:vimik_conf")
+if !exists("g:vimik_conf") || !exists("g:vimik_conf.path") || !exists("g:vimik_conf.path_html")
 	let g:vimik_conf= {}
 	let g:vimik_conf.path = '~/VIMIK/sourcex/'
 	let g:vimik_conf.path_html = '~/VIMIK/html/'
@@ -25,8 +25,11 @@ function! VimikSet(option, value) "{{{
 	let g:vimik_conf[a:option] = a:value
 endfunction "}}}
 
-command! VimikIndex call base#goto_index()
-command! VimikTabIndex call base#goto_index(1)
+call VimikSet('path', expand(VimikGet('path')))
+call VimikSet('path_html', expand(VimikGet('path_html')))
+
+command! VimikIndex call vimik#goto_index()
+command! VimikTabIndex call vimik#goto_index(1)
 
 if !hasmapto('<Plug>VimikIndex')
 	nmap <silent><unique> <Leader>ww <Plug>VimikIndex
@@ -34,7 +37,7 @@ endif
 nnoremap <unique><script> <Plug>VimikIndex :VimikIndex<CR>
 
 if !hasmapto('<Plug>VimikTabIndex')
-	nmap <silent><unique> <Leader>wt <Plug>VimikTabIndex
+	nmap <silent><unique> <Leader>k <Plug>VimikTabIndex
 endif
 nnoremap <unique><script> <Plug>VimikTabIndex :VimikTabIndex<CR>
 

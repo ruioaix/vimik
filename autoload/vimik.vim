@@ -126,3 +126,12 @@ function! vimik#follow_link(split, ...) "{{{ Parse link at cursor and pass
 		call vimik#open_link(cmd, lnk)
 	endif
 endfunction " }}}
+
+function! vimik#go_back_link() "{{{
+	if exists("b:vimik_prev_link")
+		" go back to saved wiki link
+		let prev_word = b:vimik_prev_link
+		execute ":e ".substitute(prev_word[0], '\s', '\\\0', 'g')
+		call setpos('.', prev_word[1])
+	endif
+endfunction " }}}

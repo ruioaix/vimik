@@ -27,7 +27,7 @@ function! vimik#edit_file(command, filename, ...) "{{{
 	" save previous link
 	" a:1 -- previous vimik link to save
 	" a:2 -- should we update previous link
-	if a:0 && a:2 && len(a:1) > 0
+	if a:0 && len(a:1) > 0
 		let b:vimik_prev_link = a:1
 	endif
 endfunction " }}}
@@ -89,6 +89,25 @@ function! vimik#matchstr_at_cursor(wikiRX) "{{{
 	endif
 endf "}}}
 
+function! vimik#open_link(cmd, link, ...) "{{{
+	let path = VimikGet('path')
+	let subdir = VimikGet('subdir')
+	let lnk = a:link
+	if lnk =~ '.\+[/\\]$'
+		let ext = ""
+	else
+		let ext = VimikGet('ext')
+	endif
+    let url = path.subdir.lnk.ext
+
+	let vimik_prev_link = []
+	if &ft == 'vimik'
+		let vimik_prev_link = [expand('%:p'), getpos('.')]
+	endif
+
+	call vimik#edit_file(a:cmd, url, vimik_prev_link)
+endfunction " }}}
+
 function! vimik#follow_link(split, ...) "{{{ Parse link at cursor and pass 
 	if a:split == "split"
 		let cmd = ":split "
@@ -101,31 +120,9 @@ function! vimik#follow_link(split, ...) "{{{ Parse link at cursor and pass
 	endif
 
 	" try WikiLink
-	let lnk = matchstr(vimik#matchstr_at_cursor(g:vimwiki_rxWikiLink), g:vimwiki_rxWikiLinkMatchUrl)
-
-	" try WikiIncl
-	if lnk == ""
-		let lnk = matchstr(vimik#matchstr_at_cursor(g:vimwiki_rxWikiIncl),
-					\ g:vimwiki_rxWikiInclMatchUrl)
-	endif
-
-	" try Weblink
-	if lnk == ""
-		let lnk = matchstr(vimik#matchstr_at_cursor(g:vimwiki_rxWeblink),
-					\ g:vimwiki_rxWeblinkMatchUrl)
-	endif
+	let lnk = matchstr(vimik#matchstr_at_cursor(g:vimik_Link), g:vimik_LinkMatchUrl)
 
 	if lnk != ""
-		if !VimwikiLinkHandler(lnk)
-			call vimwiki#vimik#open_link(cmd, lnk)
-		endif
-		return
+		call vimik#open_link(cmd, lnk)
 	endif
-
-	if a:0 > 0
-		execute "normal! ".a:1
-	else		
-		call vimwiki#vimik#normalize_link(0)
-	endif
-
 endfunction " }}}

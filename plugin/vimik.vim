@@ -42,3 +42,25 @@ endif
 nnoremap <unique><script> <Plug>VimikTabIndex :VimikTabIndex<CR>
 
 let &cpo = s:old_cpo
+
+let magic_chars = '.*[]\^$'
+let valid_chars = '[^\\\]]'
+let g:vimik_LinkPrefix = '[['
+let g:vimik_LinkPrefix = escape(g:vimik_LinkPrefix, magic_chars)
+let g:vimik_LinkSuffix = ']]'
+let g:vimik_LinkSuffix = escape(g:vimik_LinkSuffix, magic_chars)
+let g:vimik_LinkSeparator = '|'
+let g:vimik_LinkSeparator = escape(g:vimik_LinkSeparator, magic_chars)
+let g:vimik_LinkUrl = valid_chars.'\{-}'
+let g:vimik_LinkDescr = valid_chars.'\{-}'
+" [[URL]], or [[URL|DESCRIPTION]]
+" a) match [[URL|DESCRIPTION]]
+let g:vimik_Link = g:vimik_LinkPrefix . g:vimik_LinkUrl . '\%(' . g:vimik_LinkSeparator . g:vimik_LinkDescr . '\)\?' . g:vimik_LinkSuffix
+" b) match URL within [[URL|DESCRIPTION]]
+let g:vimik_LinkMatchUrl = g:vimik_LinkPrefix.
+      \ '\zs'. g:vimik_LinkUrl.'\ze\%('. g:vimik_LinkSeparator.
+      \ g:vimik_LinkDescr.'\)\?'.g:vimik_LinkSuffix
+" c) match DESCRIPTION within [[URL|DESCRIPTION]]
+let g:vimik_LinkMatchDescr = g:vimik_LinkPrefix.
+      \ g:vimik_LinkUrl.g:vimik_LinkSeparator.'\%('.
+      \ '\zs'. g:vimik_LinkDescr. '\ze\)\?'. g:vimik_LinkSuffix

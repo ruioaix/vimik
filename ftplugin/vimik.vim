@@ -42,3 +42,17 @@ if !hasmapto('<Plug>VimikGoBackLink')
 	nmap <silent><buffer> <BS> <Plug>VimikGoBackLink
 endif
 nnoremap <silent><script><buffer> <Plug>VimikGoBackLink :VimikGoBackLink<CR>
+
+command! -buffer Vimik2HTML call vimik#vmk2html(expand('%:p'))
+command! -buffer Vimik2HTMLBrowse call vimik#system_open_link(vimik#vmk2html(expand('%:p')))
+command! -buffer VimikAll2HTML call vimik#vmkALL2html()
+
+if !hasmapto('<Plug>Vimik2HTML')
+  nmap <buffer> <Leader>wh <Plug>Vimik2HTML
+endif
+nnoremap <script><buffer> <Plug>Vimik2HTML :Vimik2HTML<CR>
+
+if !hasmapto('<Plug>Vimik2HTMLBrowse')
+  nmap <buffer> <Leader>whh <Plug>Vimik2HTMLBrowse
+endif
+nnoremap <script><buffer> <Plug>Vimik2HTMLBrowse :Vimik2HTMLBrowse<CR>

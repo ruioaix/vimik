@@ -14,6 +14,8 @@ if !exists("g:vimik_conf") || !exists("g:vimik_conf.path") || !exists("g:vimik_c
 	let g:vimik_conf.ext = '.vmk'
 endif
 
+let g:vimik_conf.cmd_vmk2html = substitute(expand('<sfile>:p:h'), '/plugin$', '/hoedown/hoedown --vimiklink', '')
+
 function! VimikGet(option) "{{{
 	if has_key(g:vimik_conf, a:option)
 		return g:vimik_conf[a:option]

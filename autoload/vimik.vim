@@ -98,7 +98,7 @@ function! vimik#open_link(cmd, link, ...) "{{{
 	else
 		let ext = VimikGet('ext')
 	endif
-    let url = path.subdir.lnk.ext
+	let url = path.subdir.lnk.ext
 
 	let vimik_prev_link = []
 	if &ft == 'vimik'
@@ -135,3 +135,48 @@ function! vimik#go_back_link() "{{{
 		call setpos('.', prev_word[1])
 	endif
 endfunction " }}}
+
+" vimik#base#system_open_link
+function! vimik#system_open_link(url) "{{{
+	" handlers
+	function! s:macunix_handler(url)
+		execute 'silent !open ' . shellescape(a:url, 1)
+		redraw!
+	endfunction
+	function! s:linux_handler(url)
+		call system('xdg-open ' . shellescape(a:url, 1).' &')
+	endfunction
+	let success = 0
+	try 
+		if has("macunix")
+			call s:macunix_handler(a:url)
+			return
+		else
+			call s:linux_handler(a:url)
+			return
+		endif
+	endtry
+	echomsg 'Default Vimik link handler was unable to open the HTML file!'
+endfunction "}}}
+
+function! vimik#vmk2html(file)
+	let file = a:file
+	let fname = fnamemodify(file, ":t:r")
+	let subdir = vimik#subdir(VimikGet('path'), file)
+	let dir = VimikGet('path_html') . subdir
+	call vimik#mkdir(dir)
+	let opfile = VimikGet('path_html') . subdir . fname . '.html'
+	let cmd = VimikGet('cmd_vmk2html')
+	let cmd = '!' . cmd . ' ' . file . ' > ' . opfile
+	execute 'silent ' . cmd
+	redraw!
+	echomsg "OK"
+	return opfile
+endfunction
+
+function! vimik#vmkALL2html() 
+	let wikifiles = split(glob(VimikGet('path').'**/*'.VimikGet('ext')), '\n')
+	for wikifile in wikifiles
+		call vimik#vmk2html(wikifile)
+	endfor
+endfunction

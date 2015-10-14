@@ -4,7 +4,7 @@ Basically, this project is inspired by vimwiki and I reused plenty of codes from
 
 ## Installation
 1. use [vundle](https://github.com/VundleVim/Vundle.vim) to install [vimik](https://github.com/xrfind/vimik)
-2. cd *hoedown* directory, type `make`
+2. cd **hoedown** directory, type `make`
 3. done
 
 ## Configuration

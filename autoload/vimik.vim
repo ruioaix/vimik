@@ -123,6 +123,7 @@ function! vimik#follow_link(split, ...) "{{{ Parse link at cursor and pass
 	let lnk = matchstr(vimik#matchstr_at_cursor(g:vimik_Link), g:vimik_LinkMatchUrl)
 
 	if lnk != ""
+		execute 'silent w'
 		call vimik#open_link(cmd, lnk)
 	endif
 endfunction " }}}
@@ -167,9 +168,9 @@ function! vimik#vmk2html(file)
 	let dir = VimikGet('path_html') . subdir
 	let opfile = VimikGet('path_html') . subdir . fname . '.html'
 	let file = substitute(file, ' ', '', '')
-	echomsg file
 	let cmd = VimikGet('cmd_vmk2html') . level . ' ' . file . ' > ' . opfile
 	call vimik#mkdir(dir)
+	exe 'silent :w'
 	let s = system(cmd)
 	if v:shell_error
 		echomsg file . " converted failed."

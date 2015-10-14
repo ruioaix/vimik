@@ -10,10 +10,10 @@ if !exists("g:vimik_conf") || !exists("g:vimik_conf.path") || !exists("g:vimik_c
 	let g:vimik_conf= {}
 	let g:vimik_conf.path = '~/VIMIK/sourcex/'
 	let g:vimik_conf.path_html = '~/VIMIK/html/'
-	let g:vimik_conf.index = 'index'
-	let g:vimik_conf.ext = '.vmk'
 endif
 
+let g:vimik_conf.index = 'index'
+let g:vimik_conf.ext = '.vmk'
 let g:vimik_conf.cmd_vmk2html = substitute(expand('<sfile>:p:h'), '/plugin$', '/hoedown/hoedown --vimiklink --vimikdirlevel ', '')
 
 function! VimikGet(option) "{{{

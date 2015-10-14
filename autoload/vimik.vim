@@ -166,14 +166,16 @@ function! vimik#vmk2html(file)
 	let level = len(split(subdir, '/'))
 	let dir = VimikGet('path_html') . subdir
 	let opfile = VimikGet('path_html') . subdir . fname . '.html'
+	let file = substitute(file, ' ', '', '')
+	echomsg file
 	let cmd = VimikGet('cmd_vmk2html') . level . ' ' . file . ' > ' . opfile
 	call vimik#mkdir(dir)
 	let s = system(cmd)
 	if v:shell_error
-		echomsg a:file . " converted failed."
+		echomsg file . " converted failed."
 		echomsg s
 	else
-		echomsg a:file . " converted successfully."
+		echomsg file . " converted successfully."
 	endif
 	return opfile
 endfunction

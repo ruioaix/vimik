@@ -1,6 +1,6 @@
 # A vim plugin which is used to write markdown wiki.
 
-Basically, this project is inspired by vimwiki and I reused plenty of codes from vimwiki.
+Basically, this project is inspired by [vimwiki](https://github.com/vimwiki/vimwiki) and I reused plenty of codes from vimwiki.
 
 ## Installation
 1. use [vundle](https://github.com/VundleVim/Vundle.vim) to install [vimik](https://github.com/xrfind/vimik)

@@ -10,9 +10,9 @@ Basically, this project is inspired by [vimwiki](https://github.com/vimwiki/vimw
 ## Configuration
 In your vimrc, adding following three line:
 
-1. let g:vimik_conf= {}
-2. let g:vimik_conf.path = '~/BLOG/'
-3. let g:vimik_conf.path_html = '~/Sites/blog/'
+1. `let g:vimik_conf= {}`
+2. `let g:vimik_conf.path = '~/BLOG/'`
+3. `let g:vimik_conf.path_html = '~/Sites/blog/'`
 
 ## Key bindings
 normal mode:

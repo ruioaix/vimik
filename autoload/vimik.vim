@@ -163,11 +163,12 @@ function! vimik#vmk2html(file)
 	let file = a:file
 	let fname = fnamemodify(file, ":t:r")
 	let subdir = vimik#subdir(VimikGet('path'), file)
+	let level = len(split(subdir, '/'))
 	let dir = VimikGet('path_html') . subdir
 	call vimik#mkdir(dir)
 	let opfile = VimikGet('path_html') . subdir . fname . '.html'
 	let cmd = VimikGet('cmd_vmk2html')
-	let cmd = '!' . cmd . ' ' . file . ' > ' . opfile
+	let cmd = '!' . cmd . level . ' ' . file . ' > ' . opfile
 	execute 'silent ' . cmd
 	redraw!
 	echomsg "OK"

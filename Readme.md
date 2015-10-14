@@ -15,17 +15,17 @@ In your vimrc, adding following three line:
 
 ## Key bindings
 normal mode:
-* <Leader>ww -- Open default wiki index file.
-* <Leader>wt -- Open default wiki index file in a new tab.
-* <Enter> -- Folow/Create wiki link
-* <Backspace> -- Go back to parent(previous) wiki link
-* <Leader>wh -- convert current file to html
-* TODO:<Leader>wd -- Delete wiki file you are in.
-* TODO:<Leader>wr -- Rename wiki file you are in.
-* TODO:<Shift-Enter> -- Split and folow/create wiki link
-* TODO:<Ctrl-Enter> -- Vertical split and folow/create wiki link
-* TODO:<Tab> -- Find next wiki link
-* TODO:<Shift-Tab> -- Find previous wiki link
+* `<Leader>ww` -- Open default wiki index file.
+* `<Leader>wt` -- Open default wiki index file in a new tab.
+* `<Enter>` -- Folow/Create wiki link
+* `<Backspace>` -- Go back to parent(previous) wiki link
+* `<Leader>wh` -- convert current file to html
+* TODO:`<Leader>wd` -- Delete wiki file you are in.
+* TODO:`<Leader>wr` -- Rename wiki file you are in.
+* TODO:`<Shift-Enter>` -- Split and folow/create wiki link
+* TODO:`<Ctrl-Enter>` -- Vertical split and folow/create wiki link
+* TODO:`<Tab>` -- Find next wiki link
+* TODO:`<Shift-Tab>` -- Find previous wiki link
 
 ## Commands
 * Vimwiki2HTML -- Convert current wiki link to HTML

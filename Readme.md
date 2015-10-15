@@ -35,8 +35,17 @@ normal mode:
 * VimwikiAll2HTML -- Convert all your wiki links to HTML
 
 ## Syntax
-Vimik use hoedown to anlysis markdown document, and output html file.
-By default, I only enable the standard syntax of markdown.
-But If you want, you can set options in your vimrc.
+Vimik use hoedown to analysis markdown document, and output html file.
+By default, I only enable following extensions:
+1. --fenced-code 
+2. --strikethrough
+3. --underline
+4. --highlight
+5. --superscript
+But If you want the standard markdown, you can just write 
+```viml
+let g:vimik_conf.hoedown = ''
+```
+to your vimrc.	
 
 Vimik use an additional syntax `[[wikilink]]` to implement the wiki link functionality.

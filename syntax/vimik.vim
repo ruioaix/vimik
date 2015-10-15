@@ -70,7 +70,6 @@ syn region markdownUrlTitle matchgroup=markdownUrlTitleDelimiter start=+"+ end=+
 syn region markdownUrlTitle matchgroup=markdownUrlTitleDelimiter start=+'+ end=+'+ keepend contained
 syn region markdownUrlTitle matchgroup=markdownUrlTitleDelimiter start=+(+ end=+)+ keepend contained
 
-syn match vimikLinkText "\[\[[a-zA-Z/\ _\-]\+\]\]" 
 
 syn region markdownLinkText matchgroup=markdownLinkTextDelimiter start="!\=\[\%(\_[^]]*]\%( \=[[(]\)\)\@=" end="\]\%( \=[[(]\)\@=" nextgroup=markdownLink,markdownId skipwhite contains=@markdownInline,markdownLineStart
 syn region markdownLink matchgroup=markdownLinkDelimiter start="(" end=")" contains=markdownUrl keepend contained
@@ -100,8 +99,15 @@ if main_syntax ==# 'markdown'
 endif
 
 syn match markdownEscape "\\[][\\`*_{}()<>#+.!-]"
-syn match markdownError "\w\@<=_\w\@="
+"syn match markdownError "\w\@<=_\w\@="
+syn match vimikLinkText "\[\[[a-zA-Z/\ _\-]\+\]\]"
+syn match markdownstrikethrough "[~]\{2}[^~]\+[~]\{2}"
+syn match markdownmark "[=]\{2}[^=]\+[=]\{2}"
+syn match markdownsuperscript "\w\@<=\^\w\+\s\@="
 
+hi def link markdownstrikethrough         htmlUnderline
+hi def link markdownmark                  Boolean
+hi def link markdownsuperscript           Tabline
 hi def link markdownH1                    htmlH1
 hi def link markdownH2                    htmlH2
 hi def link markdownH3                    htmlH3

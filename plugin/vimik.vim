@@ -14,7 +14,12 @@ endif
 
 let g:vimik_conf.index = 'index'
 let g:vimik_conf.ext = '.vmk'
-let g:vimik_conf.cmd_vmk2html = substitute(expand('<sfile>:p:h'), '/plugin$', '/hoedown/hoedown --vimiklink --vimikdirlevel ', '')
+if !exists("g:vimik_conf.hoedown")
+	let g:vimik_conf.hoedown = '--fenced-code --strikethrough --underline --highlight --superscript'
+endif
+let g:vimik_conf.cmd_vmk2html = substitute(expand('<sfile>:p:h'), '/plugin$', '/hoedown/hoedown', '')
+let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . ' ' . g:vimik_conf.hoedown
+let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . " --vimiklink --vimikdirlevel "
 
 function! VimikGet(option) "{{{
 	if has_key(g:vimik_conf, a:option)

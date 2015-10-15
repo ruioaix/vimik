@@ -13,6 +13,8 @@ In your vimrc, adding following three line:
 1. `let g:vimik_conf= {}`
 2. `let g:vimik_conf.path = '~/BLOG/'`
 3. `let g:vimik_conf.path_html = '~/Sites/blog/'`
+4. `let g:vimik_conf.hoedown = '--fenced-code --strikethrough --underline --highlight --superscript'`
+	There are a dozen of extensions which hoedown supports, you can add the options here to enable them.
 
 ## Key bindings
 normal mode:

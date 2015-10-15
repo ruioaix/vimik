@@ -12,6 +12,13 @@ if !exists("g:vimik_conf") || !exists("g:vimik_conf.path") || !exists("g:vimik_c
 	let g:vimik_conf.path_html = '~/VIMIK/html/'
 endif
 
+if !exists("g:vimik_conf.html_header")
+	let g:vimik_conf.html_header = substitute(expand('<sfile>:p:h'), '/plugin$', '/html/header.html', '')
+endif
+if !exists("g:vimik_conf.html_footer")
+	let g:vimik_conf.html_footer = substitute(expand('<sfile>:p:h'), '/plugin$', '/html/footer.html', '')
+endif
+
 let g:vimik_conf.index = 'index'
 let g:vimik_conf.ext = '.vmk'
 if !exists("g:vimik_conf.hoedown")
@@ -19,6 +26,8 @@ if !exists("g:vimik_conf.hoedown")
 endif
 let g:vimik_conf.cmd_vmk2html = substitute(expand('<sfile>:p:h'), '/plugin$', '/hoedown/hoedown', '')
 let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . ' ' . g:vimik_conf.hoedown
+let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . ' --html-header ' . g:vimik_conf.html_header
+let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . ' --html-footer ' . g:vimik_conf.html_footer
 let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . " --vimiklink --vimikdirlevel "
 
 function! VimikGet(option) "{{{

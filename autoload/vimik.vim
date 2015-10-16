@@ -191,18 +191,31 @@ function! vimik#vmkALL2html()
 endfunction
 
 function! vimik#gitpush()
-	call vimik#vmk2html(expand("%:p"))
+	let file = expand("%:p")
+	call vimik#vmk2html(file)
+
 	let htmldir = VimikGet('path_html')
-	let cmd = 'cd ' . htmldir . ' && git add . && git commit -a -m '
-	let message = input("Vimik: Please write git push message: \n")
-	echomsg ' '
-	let cmd = cmd . message
+	let cmd = 'cd ' . htmldir . ' && git add . '
 	let s = system(cmd)
 	if v:shell_error
-		echomsg 'GitPush: "' . message . '" ==FAILED==' 
-		echomsg s
+		echomsg 'GitAdd: '.message.' '.s.' ==FAILED==' 
 	else
-		echomsg 'GitPush: "' . message . '" ==SUCCESS==' 
-		echomsg s
+		let cmd = 'cd ' . htmldir . ' && git commit -a -m '
+		let fname = fnamemodify(file, ":t:r")
+		let message = '"'.fname.' modify"'
+		let cmd = cmd . message
+		let s = system(cmd)
+		if v:shell_error
+			echomsg 'GitCommit: '.message.' '.s.' ==FAILED==' 
+		else
+			echomsg 'GitCommit: '.s.' [SUCCESS]'
+			let cmd = 'cd ' . htmldir . ' && git push'
+			let s = system(cmd)
+			if v:shell_error
+				echomsg 'GitPush: '.message.' '.s.' ==FAILED=='
+			else
+				echomsg 'GitPush: '.message.' '.s.' [SUCCESS]'
+			endif
+		endif
 	endif
 endfunction

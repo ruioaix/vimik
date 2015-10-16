@@ -210,12 +210,14 @@ function! vimik#gitpush()
 		else
 			echomsg 'GitCommit: '.s.' [SUCCESS]'
 			let cmd = 'cd ' . htmldir . ' && git push'
+			echomsg 'GitPush: begin...'
 			let s = system(cmd)
 			if v:shell_error
 				echomsg 'GitPush: '.message.' '.s.' ==FAILED=='
 			else
 				echomsg 'GitPush: '.message.' '.s.' [SUCCESS]'
 			endif
+			echomsg 'Git Push [DONE]'
 		endif
 	endif
 endfunction

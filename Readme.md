@@ -15,6 +15,8 @@ In your vimrc, adding following three line:
 3. `let g:vimik_conf.path_html = '~/Sites/blog/'`
 4. `let g:vimik_conf.hoedown = '--fenced-code --strikethrough --underline --highlight --superscript'`
 	There are a dozen of extensions which hoedown supports, you can add the options here to enable them.
+5. `let g:vimik_conf.html_header = 'someplace/header.html'`
+6. `let g:vimik_conf.html_footer = 'someplace/footer.html'`
 
 ## Key bindings
 normal mode:
@@ -49,3 +51,14 @@ let g:vimik_conf.hoedown = ''
 to your vimrc.	
 
 Vimik use an additional syntax `[[wikilink]]` to implement the wiki link functionality.
+
+## html template
+I use bootstrap as the bacis html template, check the **html** directory.
+
+The `<title>title</title>` should keep unchanged, because I use this string to find the right 
+place to insert the right title of the page.
+
+I use the test of the first header, I mean `<h1> <h2> ...`, to set the title.
+
+For example, if the first header of the page is `<h1>hello world</h1>`, then the title of page 
+is **hello world**.

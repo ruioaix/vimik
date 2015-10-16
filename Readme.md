@@ -58,7 +58,7 @@ I use bootstrap as the bacis html template, check the **html** directory.
 The `<title>title</title>` should keep unchanged, because I use this string to find the right 
 place to insert the right title of the page.
 
-I use the test of the first header, I mean `<h1> <h2> ...`, to set the title.
+The text of the first header, I mean `<h1> <h2> ...`, will be used to set the title.
 
 For example, if the first header of the page is `<h1>hello world</h1>`, then the title of page 
 is **hello world**.

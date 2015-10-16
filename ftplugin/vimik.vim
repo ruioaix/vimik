@@ -56,3 +56,9 @@ if !hasmapto('<Plug>Vimik2HTMLBrowse')
   nmap <buffer> <Leader>whh <Plug>Vimik2HTMLBrowse
 endif
 nnoremap <script><buffer> <Plug>Vimik2HTMLBrowse :Vimik2HTMLBrowse<CR>
+
+command! -buffer Vimikgitpush call vimik#gitpush()
+if !hasmapto('<Plug>Vimikgitpush')
+  nmap <buffer> <Leader>wp <Plug>Vimikgitpush
+endif
+nnoremap <script><buffer> <Plug>Vimikgitpush :Vimikgitpush<CR>

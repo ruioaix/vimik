@@ -189,3 +189,20 @@ function! vimik#vmkALL2html()
 		call vimik#vmk2html(wikifile)
 	endfor
 endfunction
+
+function! vimik#gitpush()
+	call vimik#vmk2html(expand("%:p"))
+	let htmldir = VimikGet('path_html')
+	let cmd = 'cd ' . htmldir . ' && git add . && git commit -a -m '
+	let message = input("Vimik: Please write git push message: \n")
+	echomsg ' '
+	let cmd = cmd . message
+	let s = system(cmd)
+	if v:shell_error
+		echomsg 'GitPush: "' . message . '" ==FAILED==' 
+		echomsg s
+	else
+		echomsg 'GitPush: "' . message . '" ==SUCCESS==' 
+		echomsg s
+	endif
+endfunction

@@ -68,3 +68,15 @@ if !hasmapto('<Plug>VimikgitpushALL')
   nmap <buffer> <Leader>wa <Plug>VimikgitpushALL
 endif
 nnoremap <script><buffer> <Plug>VimikgitpushALL :VimikgitpushALL<CR>
+
+command! -buffer Vimiknextlink call vimik#nextlink()
+if !hasmapto('<Plug>Vimiknextlink')
+  nmap <buffer> <Tab> <Plug>Vimiknextlink
+endif
+nnoremap <script><buffer> <Plug>Vimiknextlink :Vimiknextlink<CR>
+
+command! -buffer Vimiklastlink call vimik#lastlink()
+if !hasmapto('<Plug>Vimiklastlink')
+  nmap <buffer> <S-Tab> <Plug>Vimiklastlink
+endif
+nnoremap <script><buffer> <Plug>Vimiklastlink :Vimiklastlink<CR>

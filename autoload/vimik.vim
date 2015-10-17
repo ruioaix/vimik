@@ -238,3 +238,18 @@ function! vimik#gitpushall()
 	endfor
 	call vimik#gitpush_core()
 endfunction
+
+function! vimik#search_word(wikiRx, cmd) "{{{
+	let match_line = search(a:wikiRx, 's'.a:cmd)
+	if match_line == 0
+		echomsg 'vimwiki: Wiki link not found.'
+	endif
+endfunction " }}}
+
+function! vimik#nextlink() 
+	call vimik#search_word(g:vimik_Link, '')
+endfunction
+
+function! vimik#lastlink() 
+	call vimik#search_word(g:vimik_Link, 'b')
+endfunction

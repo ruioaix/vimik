@@ -19,14 +19,26 @@ In your vimrc, adding following three line:
 6. `let g:vimik_conf.html_footer = 'someplace/footer.html'`
 
 ## Key bindings
-normal mode:
+
+### open wiki
 * `<Leader>ww` -- Open default wiki index file.
 * `<Leader>k` -- Open default wiki index file in a new tab.
-* TODO:`<Tab>` -- Find next wiki link
+
+### move in wiki
+* `<Tab>` -- Find next wiki link
+* `<S-Tab>` -- Find last wiki link
 * `<Enter>` -- Folow/Create wiki link
 * `<Backspace>` -- Go back to parent(previous) wiki link
+
+### convert html
 * `<Leader>wh` -- convert current file to html
 * `<Leader>whh` -- convert current file to html and open the html in brower.
+
+### push to yourname.github.io
+* `<Leader>wp` -- git commit and push current wiki file and generated html file.
+* `<Leader>wa` -- git commit and push all wiki and all generated html file.
+
+### TODO
 * TODO:`<Leader>wd` -- Delete wiki file you are in.
 * TODO:`<Leader>wr` -- Rename wiki file you are in.
 * TODO:`<Shift-Enter>` -- Split and folow/create wiki link

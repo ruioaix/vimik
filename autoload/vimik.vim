@@ -130,6 +130,7 @@ endfunction " }}}
 function! vimik#go_back_link() "{{{
 	if exists("b:vimik_prev_link")
 		" go back to saved wiki link
+		exe 'silent :w'
 		let prev_word = b:vimik_prev_link
 		execute ":e ".substitute(prev_word[0], '\s', '\\\0', 'g')
 		call setpos('.', prev_word[1])
@@ -166,8 +167,8 @@ function! vimik#vmk2html(file)
 	let level = len(split(subdir, '/'))
 	let dir = VimikGet('path_html') . subdir
 	let opfile = VimikGet('path_html') . subdir . fname . '.html'
-	let opfile2 = substitute(opfile, ' ', '\\ ', '')
-	let file = substitute(file, ' ', '\\ ', '')
+	let opfile2 = substitute(opfile, ' ', '\\ ', 'g')
+	let file = substitute(file, ' ', '\\ ', 'g')
 	let cmd = VimikGet('cmd_vmk2html') . level . ' ' . file . ' > ' . opfile2
 	"echomsg cmd
 	call vimik#mkdir(dir)
@@ -179,7 +180,7 @@ function! vimik#vmk2html(file)
 	else
 		echomsg 'File: "' . file . '" convert to html [SUCCESS]'
 	endif
-	return opfile2
+	return opfile
 endfunction
 
 function! vimik#vmkALL2html() 
@@ -227,7 +228,8 @@ endfunction
 function! vimik#gitpush(file)
 	let file = a:file
 	let opfile = vimik#vmk2html(file)
-	call vimik#gitpush_core(file, opfile)
+	let opfile2 = substitute(opfile, ' ', '\\ ', 'g')
+	call vimik#gitpush_core(file, opfile2)
 endfunction
 
 function! vimik#gitpushall()

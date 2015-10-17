@@ -26,9 +26,11 @@ In your vimrc, adding following three line:
 
 ### move in wiki
 * `<Tab>` -- Find next wiki link
-* `<S-Tab>` -- Find last wiki link
+* `<Shift-Tab>` -- Find last wiki link
 * `<Enter>` -- Folow/Create wiki link
 * `<Backspace>` -- Go back to parent(previous) wiki link
+* `<Ctrl-l>` -- Split and folow/create wiki link
+* `<Ctrl-v>` -- Vertical split and folow/create wiki link
 
 ### convert html
 * `<Leader>wh` -- convert current file to html
@@ -41,13 +43,10 @@ In your vimrc, adding following three line:
 ### TODO
 * TODO:`<Leader>wd` -- Delete wiki file you are in.
 * TODO:`<Leader>wr` -- Rename wiki file you are in.
-* TODO:`<Shift-Enter>` -- Split and folow/create wiki link
-* TODO:`<Ctrl-Enter>` -- Vertical split and folow/create wiki link
-* TODO:`<Shift-Tab>` -- Find previous wiki link
 
 ## Commands
-* Vimwiki2HTML -- Convert current wiki link to HTML
-* VimwikiAll2HTML -- Convert all your wiki links to HTML
+* `:Vimwiki2HTML` -- Convert current wiki link to HTML
+* `:VimwikiAll2HTML` -- Convert all your wiki links to HTML
 
 ## Syntax
 Vimik use hoedown to analysis markdown document, and output html file.

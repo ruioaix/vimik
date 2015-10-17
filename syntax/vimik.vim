@@ -100,7 +100,7 @@ endif
 
 syn match markdownEscape "\\[][\\`*_{}()<>#+.!-]"
 "syn match markdownError "\w\@<=_\w\@="
-syn match vimikLinkText "\[\[[a-zA-Z/\ _\-]\+\]\]"
+syn match vimikLinkText "\[\[[a-zA-Z0-9/\ _\-]\+\]\]"
 syn match markdownstrikethrough "[~]\{2}[^~]\+[~]\{2}"
 syn match markdownmark "[=]\{2}[^=]\+[=]\{2}"
 syn match markdownsuperscript "\w\@<=\^\w\+\s\@="

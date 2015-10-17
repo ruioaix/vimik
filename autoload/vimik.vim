@@ -19,16 +19,15 @@ function! vimik#edit_file(command, filename, ...) "{{{
 	let dir = fnamemodify(a:filename, ":p:h")
 	if vimik#mkdir(dir, 1)
 		execute a:command.' '.fname
+		" save previous link
+		" a:1 -- previous vimik link to save
+		" a:2 -- should we update previous link
+		if a:0 && len(a:1) > 0
+			let b:vimik_prev_link = a:1
+		endif
 	else
 		echom ' '
 		echom 'Vimik: Unable to edit file in non-existent directory: '.dir
-	endif
-
-	" save previous link
-	" a:1 -- previous vimik link to save
-	" a:2 -- should we update previous link
-	if a:0 && len(a:1) > 0
-		let b:vimik_prev_link = a:1
 	endif
 endfunction " }}}
 

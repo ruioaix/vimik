@@ -180,7 +180,7 @@ function! vimik#vmk2html(file)
 	else
 		echomsg 'File: "' . file . '" convert to html [SUCCESS]'
 	endif
-	return opfile
+	return opfile2
 endfunction
 
 function! vimik#vmkALL2html() 
@@ -190,20 +190,23 @@ function! vimik#vmkALL2html()
 	endfor
 endfunction
 
-function! vimik#gitpush()
-	let file = expand("%:p")
-	call vimik#vmk2html(file)
-
+function! vimik#gitpush_core(...)
 	let htmldir = VimikGet('path_html')
-	let cmd = 'cd ' . htmldir . ' && git add . '
+	if a:0 >= 2
+		let file = a:1
+		let opfile = a:2
+		let message = '"'.file.' '.opfile.' modify"'
+		let cmd = 'cd ' . htmldir . ' && git add ' . file . ' ' . opfile
+	else
+		let message = '"all push"'
+		let cmd = 'cd ' . htmldir . ' && git add .'
+	endif
+
 	let s = system(cmd)
 	if v:shell_error
 		echomsg 'GitAdd: '.message.' '.s.' ==FAILED==' 
 	else
-		let cmd = 'cd ' . htmldir . ' && git commit -a -m '
-		let fname = fnamemodify(file, ":t:r")
-		let message = '"'.fname.' modify"'
-		let cmd = cmd . message
+		let cmd = 'cd ' . htmldir . ' && git commit -a -m '.message
 		let s = system(cmd)
 		if v:shell_error
 			echomsg 'GitCommit: '.message.' '.s.' ==FAILED==' 
@@ -220,4 +223,18 @@ function! vimik#gitpush()
 			echomsg 'Git Push [DONE]'
 		endif
 	endif
+endfunction
+
+function! vimik#gitpush(file)
+	let file = a:file
+	let opfile = vimik#vmk2html(file)
+	call vimik#gitpush_core(file, opfile)
+endfunction
+
+function! vimik#gitpushall()
+	let wikifiles = split(glob(VimikGet('path').'**/*'.VimikGet('ext')), '\n')
+	for wikifile in wikifiles
+		call vimik#vmk2html(wikifile)
+	endfor
+	call vimik#gitpush_core()
 endfunction

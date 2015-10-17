@@ -22,7 +22,7 @@ endif
 let g:vimik_conf.index = 'index'
 let g:vimik_conf.ext = '.vmk'
 if !exists("g:vimik_conf.hoedown")
-	let g:vimik_conf.hoedown = '--fenced-code --strikethrough --underline --highlight --superscript --toc-level 1'
+	let g:vimik_conf.hoedown = '--fenced-code --strikethrough --underline --highlight --superscript --toc-level 1 --tables'
 endif
 let g:vimik_conf.cmd_vmk2html = substitute(expand('<sfile>:p:h'), '/plugin$', '/hoedown/hoedown', '')
 let g:vimik_conf.cmd_vmk2html = g:vimik_conf.cmd_vmk2html . ' ' . g:vimik_conf.hoedown

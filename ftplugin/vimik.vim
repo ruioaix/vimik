@@ -23,12 +23,12 @@ endif
 nnoremap <silent><script><buffer> <Plug>VimikFollowLink :VimikFollowLink<CR>
 
 if !hasmapto('<Plug>VimikSplitLink')
-	nmap <silent><buffer> <C-l> <Plug>VimikSplitLink
+	nmap <silent><buffer> <C-k> <Plug>VimikSplitLink
 endif
 nnoremap <silent><script><buffer> <Plug>VimikSplitLink :VimikSplitLink<CR>
 
 if !hasmapto('<Plug>VimikVSplitLink')
-	nmap <silent><buffer> <C-v> <Plug>VimikVSplitLink
+	nmap <silent><buffer> <C-l> <Plug>VimikVSplitLink
 endif
 nnoremap <silent><script><buffer> <Plug>VimikVSplitLink :VimikVSplitLink<CR>
 

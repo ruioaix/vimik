@@ -243,7 +243,7 @@ endfunction
 function! vimik#search_word(wikiRx, cmd) "{{{
 	let match_line = search(a:wikiRx, 's'.a:cmd)
 	if match_line == 0
-		echomsg 'vimwiki: Wiki link not found.'
+		echomsg 'vimik: Wiki link not found.'
 	endif
 endfunction " }}}
 

@@ -11,8 +11,8 @@ Basically, this project is inspired by [vimwiki](https://github.com/vimwiki/vimw
 In your vimrc, adding following three line:
 
 1. `let g:vimik_conf= {}`
-2. `let g:vimik_conf.path = '~/BLOG/'`
-3. `let g:vimik_conf.path_html = '~/Sites/blog/'`
+2. `let g:vimik_conf.path = '~/Sites/wiki/md/'`  Path has to be ended with `/`
+3. `let g:vimik_conf.path_html = '~/Sites/wiki/'` Path has to be ended with `/`
 4. `let g:vimik_conf.hoedown = '--fenced-code --strikethrough --underline --highlight --superscript'`
 	There are dozens of extensions which hoedown supports, you can add the options here to enable them.
 5. `let g:vimik_conf.html_header = 'someplace/header.html'`
@@ -76,5 +76,7 @@ is **hello world**.
 
 The `%level%` is used to fix the right href attribute in `<a>` html tag. It should be put before 
 each url.
+
+The `%tableofcontents%` will be replaced with the headers' structure.
 
 I use bootstrap as the bacis html template, check the **html** directory.

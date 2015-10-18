@@ -7,20 +7,26 @@
 		<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 		<meta name="description" content="">
 		<meta name="author" content="">
-		<link rel="icon" href="favicon.ico">
 
-		<title>title</title>
+		<title>%title%</title>
+		<link rel="icon" href="%level%pic/favicon.ico">
 
 		<!-- Bootstrap core CSS -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 		<link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/styles/zenburn.min.css" rel="stylesheet">
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/highlight.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/languages/vim.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.8.0/languages/tex.min.js"></script>
-		<script>hljs.initHighlightingOnLoad();</script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.1/css/lightbox.min.css" rel="stylesheet">
 
 		<!-- Custom styles for this template -->
-		<style> body { min-height: 2000px; padding-top: 70px; } </style>
+		<style> 
+
+body { padding-top: 70px; } 
+:target:before {
+	content:"";
+	display:block;
+	height:60px; /* fixed header height*/
+	margin:-60px 0 0; /* negative fixed header height */
+}	
+		</style>
 
 	</head>
 
@@ -36,30 +42,20 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Project name</a>
+					<a class="navbar-brand" href="%level%pic/porigin.jpg" style="padding:0px 16px 0px 5px" data-lightbox="p"><img src="%level%pic/p.png" height="50px"></a>
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul>
-						</li>
+						<li class="active"><a href="%level%">RuiX</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="../navbar/">Default</a></li>
-						<li><a href="../navbar-static-top/">Static top</a></li>
-						<li class="active"><a href="./">Fixed top <span class="sr-only">(current)</span></a></li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Table of Contents<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								%tableofcontents%
+							</ul>
+						</li>
+						<li><a href="%level%about.html">About</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>

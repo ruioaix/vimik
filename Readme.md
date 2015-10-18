@@ -57,7 +57,7 @@ By default, I only enable following extensions:
 3. --underline
 4. --highlight
 5. --superscript
-6. --toc-level 1
+6. --toc-level 100
 
 But If you want the standard markdown, you can just write 
 

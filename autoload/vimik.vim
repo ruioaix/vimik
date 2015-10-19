@@ -128,9 +128,13 @@ function! vimik#follow_link(split, ...) "{{{ Parse link at cursor and pass
 endfunction " }}}
 
 function! vimik#go_back_link() "{{{
+	exe 'silent :w'
+	call vimik#go_back_link_c()
+endfunction
+
+function! vimik#go_back_link_c() "{{{
 	if exists("b:vimik_prev_link")
 		" go back to saved wiki link
-		exe 'silent :w'
 		let prev_word = b:vimik_prev_link
 		execute ":e ".substitute(prev_word[0], '\s', '\\\0', 'g')
 		call setpos('.', prev_word[1])
@@ -254,3 +258,30 @@ endfunction
 function! vimik#lastlink() 
 	call vimik#search_word(g:vimik_Link, 'b')
 endfunction
+
+function! vimik#delete_link() "{{{
+	" file system funcs Delete wiki link you are in from filesystem
+	let val = input('Delete ['.expand('%').'] (y/n)? ', "")
+	if val != 'y'
+		return
+	endif
+	let fname = expand('%:p')
+	echomsg fname
+	try
+		let a = delete(fname)
+	catch /.*/
+		echomsg 'vimik: Cannot delete "'.expand('%:t:r').'"!'
+		return
+	endtry
+
+	call vimik#go_back_link_c()
+	execute "bdelete! ".escape(fname, " ")
+
+	" reread buffer => deleted
+	" wiki link should appear as
+	" non-existent
+	if expand('%:p') != ""
+		execute "e"
+	endif
+endfunction "}}}
+

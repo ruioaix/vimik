@@ -79,3 +79,9 @@ if !hasmapto('<Plug>Vimiklastlink')
   nmap <buffer> <S-Tab> <Plug>Vimiklastlink
 endif
 nnoremap <script><buffer> <Plug>Vimiklastlink :Vimiklastlink<CR>
+
+command! -buffer Vimikdeletelink call vimik#delete_link()
+if !hasmapto('<Plug>Vimikdeletelink')
+  nmap <buffer> <Leader>wd <Plug>Vimikdeletelink
+endif
+nnoremap <script><buffer> <Plug>Vimikdeletelink :Vimikdeletelink<CR>

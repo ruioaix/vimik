@@ -266,7 +266,8 @@ function! vimik#delete_link() "{{{
 		return
 	endif
 	let fname = expand('%:p')
-	echomsg fname
+	"echomsg fname
+	exe 'silent :w'
 	try
 		let a = delete(fname)
 	catch /.*/
